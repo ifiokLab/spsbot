@@ -1,0 +1,171 @@
+
+.header-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+  background-color: transparent;
+  color: white;
+  position: fixed;
+  top: 0;left: 0;right: 0;
+  z-index: 1000;
+}
+
+.header-wrapper .link-tabs{
+  color: white;
+  margin-right: 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.header-wrapper .link-tabs:hover{
+  background-color: rgba(220, 220, 220,0.4);
+}
+.header-wrapper .logo{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+}
+.header-wrapper .logo i{
+  color: white;
+  font-size: 1.3rem;
+  margin-right: 10px;
+  display: none;
+}
+.header-wrapper .user{
+  margin-right: 20px;
+}
+.header-wrapper .user i{
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+.header-wrapper .menu-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slash-btn {
+    display: inline-block;
+    padding: 7px 20px;
+    background-color: #007bff; /* Change color as needed */
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #007bff; /* Change color to match background-color */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .slash-btn:hover {
+    background-color: #0056b3; /* Change color as needed */
+    border-color: #0056b3; /* Change color to match background-color */
+  }
+
+.header-sidebar{
+  
+   width: 300px;
+   background-color: white;
+   position: absolute;
+   top: 50px;
+   left: 10px;
+   border-radius: 10px;
+   padding-bottom: 30px;
+   display: none;
+   padding: 15px;
+}
+.header-sidebar.show{
+  display: block;
+}
+.header-sidebar .tabs{
+
+  font-size: .9rem;
+  padding: 10px 10px;
+}
+.header-sidebar .tabs i{
+  margin-right: 5px;
+}
+
+.header-sidebar .header-tab{
+  padding: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+.header-sidebar .header-tab i{
+  font-size: 1.4rem;
+}
+
+
+
+
+
+
+
+.account-modal{
+  width: 300px;
+  background-color: white;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  border-radius: 10px;
+  padding-bottom: 30px;
+  display: none;
+  padding: 15px;
+}
+.account-modal.show{
+  display: flex;
+  flex-direction: column;
+}
+.account-modal .tabs{
+
+ font-size: .9rem;
+ text-decoration: none;
+ padding: 10px 10px;
+}
+.account-modal .tabs i{
+ margin-right: 5px;
+}
+
+.account-modal .header-tab{
+ padding: 4px;
+ display: flex;
+ justify-content: flex-end;
+}
+.account-modal .header-tab i{
+ font-size: 1.4rem;
+}
+@media screen and (max-width:899px){
+  .header-wrapper .logo i{
+    display: block;
+  }
+  .header-wrapper .link-tabs{
+    display: none;
+  }
+  .header-wrapper .slash-btn{
+    display: none;
+  }
+}
+
+
+@media screen and (max-width:399px){
+  
+  .header-wrapper .slash-btn{
+    display: none;
+  }
+  .header-sidebar{
+  
+    max-width: 100%;
+    top: 0px;
+    left: 0px;
+   
+ }
+ .account-modal{
+  width: 100%;
+ }
+}
