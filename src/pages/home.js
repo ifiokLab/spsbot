@@ -5,7 +5,7 @@ import { setUser } from '../actions/user-action'; // Import actions
 import { useSelector } from 'react-redux';
 import '../styles/header.css';
 import '../styles/home.css';
-import hero from '../images/hero.webp';
+import hero from '../images/banner.jpg';
 import tradevideo from '../images/TradingView.mp4';
 import hero2 from '../images/hero2.webp';
 import Header from '../components/header';
@@ -23,7 +23,7 @@ const Home = ()=>{
           <div className='main-wrapper'>
               <div className='hero-wrapper'>
                       <img className = 'laptop-hero' src={hero} alt='images'/>
-                      <img src={hero2} className = 'mobile-hero' alt='images'/>
+                      <img src={hero} className = 'mobile-hero' alt='images'/>
                       <div className='hero-text-wrapper'>
                           <h2>Where the world does markets</h2>
                           <p>The best trades require research, then commitment.</p>

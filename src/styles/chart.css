@@ -6,18 +6,10 @@
     margin: 90px 0 20px 0;
 
 }
-.bot-control-wrapper button:nth-child(1){
-    margin: 0 8px;
-    background-color: green;
-    padding: 10px 20px;
-    border: transparent;
-    color: white;
-    cursor: pointer;
-    display: flex;
-}
+
 .bot-control-wrapper button:nth-child(2){
     margin: 0 8px;
-    background-color: red;
+    background-color: navy;
     padding: 10px 20px;
     border: transparent;
     color: white;
@@ -188,6 +180,44 @@
     }
   }
 
+  .App{
+    border: solid white;
+    width: 100px;
+    height: 50px;
+   
+    border-radius: 25px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .toggle-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    color: black;
+    font-size: 18px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    margin: 0;
+  }
+  
+  .toggle-button.on {
+    background-color: white;
+    transform: translateX(50px);
+  }
+  
+  .toggle-button.off {
+    background-color: white;
+    transform: translateX(0);
+  }
+  
 
 @media screen and (max-width:992px){
   .snackbar-danger,.snackbar-success{

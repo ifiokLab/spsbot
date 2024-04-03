@@ -20,21 +20,20 @@ const TradingChartMT = () => {
   const [broker,setBroker] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarStatus, setsnackbarStatus] = useState('');
+  const [isOn, setIsOn] = useState(false);
 
 
-  const ToggleBot = ()=>{
-    setBotModal(!botModal);
-  };
-
-  const startBot = async(event) => {
-    // Send a POST request to start the trading bot
-    event.preventDefault();
-    setIsLoading(!isLoading);
-   
-    setShowSnackbar(false);
-    const response = axios.post('http://localhost:8000/trading-bot-control/', { action: 'start' ,email:email,password:password,broker:broker,currency:currency});
-    console.log('response.data.success.',response.data);
-    try{
+  const toggleButton = async(event) => {
+    setIsOn(!isOn);
+    if(isOn){
+      console.log('on..');
+      event.preventDefault();
+      setIsLoading(!isLoading);
+     
+      setShowSnackbar(false);
+      const response = axios.post(`${apiUrl}/trading-bot-control/`, { action: 'start' ,email:email,password:password,broker:broker,currency:currency});
+      console.log('response.data.success.',response.data);
+      try{
         if(response.data){
             setTimeout(() => {
               setIsLoading(isLoading);
@@ -47,10 +46,10 @@ const TradingChartMT = () => {
           console.log(response.data.message);
           // Establish WebSocket connection if not already connected
           if (!socket) {
-            const newSocket = new WebSocket('ws://localhost:8000/ws/trading-bot/');
+            const newSocket = new WebSocket(`ws://${apiUrl}/ws/trading-bot/`);
             newSocket.onopen = () => {
               console.log('WebSocket connection established.');
-             
+              
             };
             newSocket.onmessage = (event) => {
               console.log('Message from server:', event.data);
@@ -62,15 +61,12 @@ const TradingChartMT = () => {
             setSocket(newSocket);
           }
         }
-    } catch(error){
-      console.error('Error starting the bot:', error);
-    };
-  };
-
-  const stopBot = () => {
-    setIsLoading(!isLoading);
-    // Send a POST request to stop the trading bot
-    axios.post('http://localhost:8000/trading-bot-control/', { action: 'stop' })
+      } catch(error){
+        console.error('Error starting the bot:', error);
+      };
+    }else{
+      console.log('off..');
+      axios.post(`http://${apiUrl}/trading-bot-control/`, { action: 'stop' })
       .then(response => {
         console.log(response.data.message);
         // Close WebSocket connection if open
@@ -82,7 +78,17 @@ const TradingChartMT = () => {
       .catch(error => {
         console.error('Error stopping the bot:', error);
       });
+    }
   };
+
+
+  const ToggleBot = (event)=>{
+    event.preventDefault();
+    setBotModal(!botModal);
+  };
+ 
+
+ 
 
   useEffect(() => {
     fetchData(); // Fetch data initially when component mounts
@@ -195,22 +201,26 @@ const TradingChartMT = () => {
      <Header />
      <div className='main-wrapper' id='chart-main-wrapper'>
       <div className='bot-control-wrapper'>
-        <button onClick={ToggleBot}>
-          Start Bot
-          {isLoading ? <div className="loader"></div> : '' }
-        </button>
-        <button onClick={stopBot}>Stop Bot</button>
+        <div className="App">
+          <button
+            className={`toggle-button ${isOn ? 'on' : 'off'}`}
+            onClick={toggleButton}
+          >
+            {isOn ? 'ON' : 'OFF'}
+          </button>
+        </div>
+        <button onClick={ToggleBot} >Set Bot</button>
         <div>
          
-          <select id="currency" value={currency} onChange={handleCurrencyChange}>
-          <option value="">Select currency</option>
-            <option value="EURJPY-OTC">EURJPY-OTC</option>
-            <option value="EURUSD-OTC">EURUSD-OTC</option>
-            <option value="USDCHF-OTC">USDCHF-OTC</option>
-            <option value="GBPUSD-OTC">GBPUSD-OTC</option>
-            <option value="AUDCAD-OTC">AUDCAD-OTC</option>
-            <option value="NZDUSD-OTC">NZDUSD-OTC</option>
-            <option value="EURGBP-OTC">EURGBP-OTC</option>
+        <select id="currency" value={currency} onChange={handleCurrencyChange}>
+            <option value="">Select currency</option>
+            <option value="EURJPY">EURJPY</option>
+            <option value="EURUSD">EURUSD</option>
+            <option value="USDCHF">USDCHF</option>
+            <option value="GBPUSD">GBPUSD</option>
+            <option value="AUDCAD">AUDCAD</option>
+            <option value="NZDUSD">NZDUSD</option>
+            <option value="EURGBP">EURGBP</option>
           </select>
         </div>
       </div>
@@ -223,7 +233,7 @@ const TradingChartMT = () => {
         
      </div>
       <Footer />
-      <form className={`organization-form ${botModal ? 'show' : ''}`} onSubmit={startBot}>
+      <form className={`organization-form ${botModal ? 'show' : ''}`} onSubmit={ToggleBot}>
                 <div className='form-wrapper'>
                     <div className='form-headerx'>
                         <div className='title'>Set Bot</div>
@@ -236,13 +246,13 @@ const TradingChartMT = () => {
                         <div className={`form-group ${currency ? 'active' : ''}`}>
                             <select id="currency" value={currency} onChange={handleCurrencyChange}>
                               <option value="">Select currency</option>
-                              <option value="EURJPY-OTC">EURJPY-OTC</option>
-                              <option value="EURUSD-OTC">EURUSD-OTC</option>
-                              <option value="USDCHF-OTC">USDCHF-OTC</option>
-                              <option value="GBPUSD-OTC">GBPUSD-OTC</option>
-                              <option value="AUDCAD-OTC">AUDCAD-OTC</option>
-                              <option value="NZDUSD-OTC">NZDUSD-OTC</option>
-                              <option value="EURGBP-OTC">EURGBP-OTC</option>
+                              <option value="EURJPY">EURJPY</option>
+                              <option value="EURUSD">EURUSD</option>
+                              <option value="USDCHF">USDCHF</option>
+                              <option value="GBPUSD">GBPUSD</option>
+                              <option value="AUDCAD">AUDCAD</option>
+                              <option value="NZDUSD">NZDUSD</option>
+                              <option value="EURGBP">EURGBP</option>
                             </select>
                         </div>
                         <div className={`form-group ${broker ? 'active' : ''}`}>
@@ -265,11 +275,11 @@ const TradingChartMT = () => {
                        
 
                         <div className='btn-wrapper'>
-                            <button type="submit">
-                              Start Bot
-                            {isLoading ? <div className="loader"></div> : '' }
-                                
-                                    
+                          <button type="submit">
+                                Set Bot
+                              {isLoading ? <div className="loader"></div> : '' }
+                                  
+                                      
                             </button>
                         </div>
                     </div>
