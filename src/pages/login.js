@@ -107,6 +107,8 @@ const Login = ()=>{
                             
                         </button>
                     </div>
+                    <Link style={{color:"white"}} to ='/signup/' className='link-tabs'>Signup</Link>
+              
                 </form>
             </div>
             <Footer />

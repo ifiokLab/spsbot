@@ -31,15 +31,17 @@ const Header= ()=>{
                 Logo
             </div>
             <div className='menu-1'>
+                <Link to ='/chart/' className='link-tabs'>Binary Bot</Link>
+                <Link to ='/metatrader/' className='link-tabs'>MT4 Bot</Link>
                 <Link className='link-tabs'>Products</Link>
                 <Link className='link-tabs'>News</Link>
-                <Link className='link-tabs'>Markets</Link>
+               
             </div>
             <div className='menu-2'>
                 <div className='user' onClick={toggleAccountModal}>
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <Link className='slash-btn' >Get started</Link>
+                <Link to = '/signup/' className='slash-btn' >Get started</Link>
             </div>
 
             <div className={`header-sidebar ${sidebarOpen ? 'show' : ''}` }>
@@ -48,6 +50,8 @@ const Header= ()=>{
                         <i className="fa-solid fa-xmark"></i>
                     </div>
                 </div>
+                <Link to ='/chart/' className='tabs'>Binary Bot</Link><br />
+                <Link to ='/metatrader/' className='tabs'>MT4 Bot</Link>
                 <div className = 'tabs'>
                     <i class="fa-brands fa-product-hunt"></i>
                     <span>Products</span>
@@ -74,12 +78,14 @@ const Header= ()=>{
                     </div>
                 ):(
                         
-                         <Link className = 'tabs'>
+                    <Link to = '/login/' className = 'tabs'>
                          <i class="fa-solid fa-user"></i>
                          <span>Sign in</span>
                      </Link>
                     )
                 }
+                <Link to ='/chart/' className='tabs'>Binary Bot</Link>
+                <Link to ='/metatrader/' className='tabs'>MT4 Bot</Link>
                 <Link className = 'tabs'>
                     <i class="fa-solid fa-circle-question"></i>
                     <span>Help center</span>

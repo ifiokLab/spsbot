@@ -148,6 +148,7 @@ const Signup = ()=>{
                             
                         </button>
                     </div>
+                    <Link style={{color:"white"}} to ='/login/' className='tabs'>Login</Link>
                 </form>
             </div>
             <Footer />
