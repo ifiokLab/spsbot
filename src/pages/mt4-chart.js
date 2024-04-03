@@ -213,15 +213,15 @@ const TradingChartMT = () => {
         <div>
          
         <select id="currency" value={currency} onChange={handleCurrencyChange}>
-            <option value="">Select currency</option>
-            <option value="EURJPY">EURJPY</option>
-            <option value="EURUSD">EURUSD</option>
-            <option value="USDCHF">USDCHF</option>
-            <option value="GBPUSD">GBPUSD</option>
-            <option value="AUDCAD">AUDCAD</option>
-            <option value="NZDUSD">NZDUSD</option>
-            <option value="EURGBP">EURGBP</option>
-          </select>
+          <option value="">Select currency</option>
+          <option value="EURJPY-OTC">EURJPY-OTC</option>
+          <option value="EURUSD-OTC">EURUSD-OTC</option>
+          <option value="USDCHF-OTC">USDCHF-OTC</option>
+          <option value="GBPUSD-OTC">GBPUSD-OTC</option>
+          <option value="AUDCAD-OTC">AUDCAD-OTC</option>
+          <option value="NZDUSD-OTC">NZDUSD-OTC</option>
+          <option value="EURGBP-OTC">EURGBP-OTC</option>
+        </select>
         </div>
       </div>
       {error ? (
@@ -244,16 +244,16 @@ const TradingChartMT = () => {
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <div className='form-body'>
                         <div className={`form-group ${currency ? 'active' : ''}`}>
-                            <select id="currency" value={currency} onChange={handleCurrencyChange}>
-                              <option value="">Select currency</option>
-                              <option value="EURJPY">EURJPY</option>
-                              <option value="EURUSD">EURUSD</option>
-                              <option value="USDCHF">USDCHF</option>
-                              <option value="GBPUSD">GBPUSD</option>
-                              <option value="AUDCAD">AUDCAD</option>
-                              <option value="NZDUSD">NZDUSD</option>
-                              <option value="EURGBP">EURGBP</option>
-                            </select>
+                        <select id="currency" value={currency} onChange={handleCurrencyChange}>
+                          <option value="">Select currency</option>
+                          <option value="EURJPY-OTC">EURJPY-OTC</option>
+                          <option value="EURUSD-OTC">EURUSD-OTC</option>
+                          <option value="USDCHF-OTC">USDCHF-OTC</option>
+                          <option value="GBPUSD-OTC">GBPUSD-OTC</option>
+                          <option value="AUDCAD-OTC">AUDCAD-OTC</option>
+                          <option value="NZDUSD-OTC">NZDUSD-OTC</option>
+                          <option value="EURGBP-OTC">EURGBP-OTC</option>
+                        </select>
                         </div>
                         <div className={`form-group ${broker ? 'active' : ''}`}>
                             <select value={broker} onChange={(e) => setBroker(e.target.value)} required>
