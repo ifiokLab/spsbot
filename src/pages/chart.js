@@ -24,6 +24,7 @@ const TradingChart = () => {
 
   const toggleButton = async(event) => {
     setIsOn(!isOn);
+    console.log('isOn:',isOn, setIsOn(!isOn));
     if(isOn){
       console.log('on..');
       event.preventDefault();
@@ -85,7 +86,28 @@ const TradingChart = () => {
     event.preventDefault();
     setBotModal(!botModal);
   };
+  const Pocket = async () => {
+      try {
+        
+          const response = await axios.post(`${apiUrl}/api/pocket/`, {
+          email:'email',
+          password:'password',
+          });
 
+          if (response) {
+            console.log('repsonse:',response.data.message);
+          } else {
+              console.error('error:',response.data.errors);
+            
+          
+          // Handle failed signup, e.g., show error messages to the user
+          }
+      } catch (error) {
+        console.error('error:',response.data.errors);
+          // Handle unexpected errors
+      }
+     
+  };
   
 
   
@@ -208,6 +230,8 @@ const TradingChart = () => {
         </button>
       </div>
         <button onClick={ToggleBot} >Set Bot</button>
+        <button onClick={Pocket} >bot</button>
+        
         <div>
          
         <select id="currency" value={currency} onChange={handleCurrencyChange}>
@@ -283,7 +307,7 @@ const TradingChart = () => {
                         </div>
                     </div>
                 </div>
-            </form>
+      </form>
             {showSnackbar && (
                 <div className={` ${snackbarStatus==='success' ? 'snackbar-success' :'snackbar-danger'} `}>
                     {snackbarStatus === 'success' ? (
