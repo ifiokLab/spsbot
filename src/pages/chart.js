@@ -103,7 +103,7 @@ const TradingChart = () => {
           // Handle failed signup, e.g., show error messages to the user
           }
       } catch (error) {
-        console.error('error:',response.data.errors);
+        console.error('error:',error);
           // Handle unexpected errors
       }
      
