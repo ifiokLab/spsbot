@@ -20,8 +20,11 @@ const TradingChart = () => {
   const [broker,setBroker] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarStatus, setsnackbarStatus] = useState('');
-  const [isOn, setIsOn] = useState(false);
+  const [isOn, setIsOn] = useState(true);
+ 
 
+
+  
   const toggleButton = async(event) => {
     setIsOn(!isOn);
     console.log('isOn:',isOn, setIsOn(!isOn));
@@ -32,17 +35,18 @@ const TradingChart = () => {
      
       setShowSnackbar(false);
       const response = axios.post('http://localhost:8000/trading-bot-control/', { action: 'start' ,email:email,password:password,broker:broker,currency:currency});
-      console.log('response.data.success.',response.data);
+      console.log('response.data.',response.data);
+      
+      setTimeout(() => {
+        setShowSnackbar(!showSnackbar);
+        setsnackbarStatus('success');
+        setShowSnackbar(true);
+      
+      }, 5000);
+      
       try{
-        if(response.data){
-            setTimeout(() => {
-              setIsLoading(isLoading);
-              setShowSnackbar(!showSnackbar);
-              //navigate('/');
+        if(response.data.success){
             
-          }, 5000);
-          setsnackbarStatus('success');
-          setShowSnackbar(true);
           console.log(response.data.message);
           // Establish WebSocket connection if not already connected
           if (!socket) {
@@ -66,6 +70,13 @@ const TradingChart = () => {
       };
     }else{
       console.log('off..');
+      setShowSnackbar(true);
+      setTimeout(() => {
+        
+        setsnackbarStatus('off');
+        setShowSnackbar(true);
+      
+      }, 5000);
       axios.post('http://localhost:8000/trading-bot-control/', { action: 'stop' })
       .then(response => {
         console.log(response.data.message);
@@ -115,7 +126,7 @@ const TradingChart = () => {
   useEffect(() => {
     fetchData(); // Fetch data initially when component mounts
 
-    const intervalId = setInterval(fetchData, 60000); // Fetch data every 60 seconds (adjust as needed)
+    const intervalId = setInterval(fetchData, 1000000); // Fetch data every 60 seconds (adjust as needed)
 
     return () => {
       clearInterval(intervalId); // Cleanup interval on component unmount
@@ -223,15 +234,13 @@ const TradingChart = () => {
       <div className='bot-control-wrapper'>
         <div className="App">
         <button
-          className={`toggle-button ${isOn ? 'on' : 'off'}`}
+          className={`toggle-button ${isOn ? 'off' : 'on'}`}
           onClick={toggleButton}
         >
-          {isOn ? 'ON' : 'OFF'}
+          {isOn ? 'OFF' : 'ON'}
         </button>
       </div>
         <button onClick={ToggleBot} >Set Bot</button>
-        <button onClick={Pocket} >bot</button>
-        
         <div>
          
         <select id="currency" value={currency} onChange={handleCurrencyChange}>
@@ -281,7 +290,8 @@ const TradingChart = () => {
                         <div className={`form-group ${broker ? 'active' : ''}`}>
                             <select value={broker} onChange={(e) => setBroker(e.target.value)} required>
                                 <option value="">Select Broker</option>
-                                <option value="IQ OPTION">IQ OPTION</option>
+                                <option value="iqoption">IQ OPTION</option>
+                                <option value="pocketoption">POCKET OPTION</option>
                                
                                 {/* Add more options as needed */}
                             </select>
