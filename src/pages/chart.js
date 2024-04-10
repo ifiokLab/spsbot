@@ -34,7 +34,7 @@ const TradingChart = () => {
       setIsLoading(!isLoading);
      
       setShowSnackbar(false);
-      const response = axios.post('http://localhost:8000/trading-bot-control/', { action: 'start' ,email:email,password:password,broker:broker,currency:currency});
+      const response = axios.post(`${apiUrl}/trading-bot-control/`, { action: 'start' ,email:email,password:password,broker:broker,currency:currency});
       console.log('response.data.',response.data);
       
       setTimeout(() => {
@@ -50,7 +50,7 @@ const TradingChart = () => {
           console.log(response.data.message);
           // Establish WebSocket connection if not already connected
           if (!socket) {
-            const newSocket = new WebSocket('ws://localhost:8000/ws/trading-bot/');
+            const newSocket = new WebSocket(`ws://${apiUrl}/ws/trading-bot/`);
             newSocket.onopen = () => {
               console.log('WebSocket connection established.');
               
@@ -77,7 +77,7 @@ const TradingChart = () => {
         setShowSnackbar(true);
       
       }, 5000);
-      axios.post('http://localhost:8000/trading-bot-control/', { action: 'stop' })
+      axios.post(`${apiUrl}/trading-bot-control/`, { action: 'stop' })
       .then(response => {
         console.log(response.data.message);
         // Close WebSocket connection if open
@@ -126,7 +126,7 @@ const TradingChart = () => {
   useEffect(() => {
     fetchData(); // Fetch data initially when component mounts
 
-    const intervalId = setInterval(fetchData, 1000000); // Fetch data every 60 seconds (adjust as needed)
+    const intervalId = setInterval(fetchData, 900000); // Fetch data every 60 seconds (adjust as needed)
 
     return () => {
       clearInterval(intervalId); // Cleanup interval on component unmount
