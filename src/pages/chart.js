@@ -126,7 +126,7 @@ const TradingChart = () => {
   useEffect(() => {
     fetchData(); // Fetch data initially when component mounts
 
-    const intervalId = setInterval(fetchData, 900000); // Fetch data every 60 seconds (adjust as needed)
+    const intervalId = setInterval(fetchData, 60000); // Fetch data every 60 seconds (adjust as needed)
 
     return () => {
       clearInterval(intervalId); // Cleanup interval on component unmount
@@ -135,7 +135,7 @@ const TradingChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/api/trading-data/`, {
+      const response = await axios.get(`/api/trading-data/`, {
         params: { symbol: currency, timeframe: 60, count: 100 }
       });
       setData(response.data);
