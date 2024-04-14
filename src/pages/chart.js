@@ -135,7 +135,7 @@ const TradingChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/trading-data/`, {
+      const response = await axios.get(`${apiUrl}/api/trading-data/`, {
         params: { symbol: currency, timeframe: 60, count: 100 }
       });
       setData(response.data);
