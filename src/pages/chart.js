@@ -135,7 +135,7 @@ const TradingChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/api/trading-data/`, {
+      const response = await axios.get(`/api/trading-data/`, {
         params: { symbol: currency, timeframe: 60, count: 100 }
       });
       setData(response.data);
@@ -292,6 +292,7 @@ const TradingChart = () => {
                                 <option value="">Select Broker</option>
                                 <option value="iqoption">IQ OPTION</option>
                                 <option value="pocketoption">POCKET OPTION</option>
+                                <option value="mt4">MT4</option>
                                
                                 {/* Add more options as needed */}
                             </select>
