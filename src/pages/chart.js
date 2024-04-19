@@ -245,13 +245,13 @@ const TradingChart = () => {
          
         <select id="currency" value={currency} onChange={handleCurrencyChange}>
           <option value="">Select currency</option>
-          <option value="EURJPY-OTC">EURJPY-OTC</option>
-          <option value="EURUSD-OTC">EURUSD-OTC</option>
-          <option value="USDCHF-OTC">USDCHF-OTC</option>
-          <option value="GBPUSD-OTC">GBPUSD-OTC</option>
-          <option value="AUDCAD-OTC">AUDCAD-OTC</option>
-          <option value="NZDUSD-OTC">NZDUSD-OTC</option>
-          <option value="EURGBP-OTC">EURGBP-OTC</option>
+          <option value="EURJPY">EURJPY-OTC</option>
+          <option value="EURUSD">EURUSD-OTC</option>
+          <option value="USDCHF">USDCHF-OTC</option>
+          <option value="GBPUSD">GBPUSD-OTC</option>
+          <option value="AUDCAD">AUDCAD-OTC</option>
+          <option value="NZDUSD">NZDUSD-OTC</option>
+          <option value="EURGBP">EURGBP-OTC</option>
         </select>
         </div>
       </div>
@@ -278,13 +278,13 @@ const TradingChart = () => {
                         <div className={`form-group ${currency ? 'active' : ''}`}>
                         <select id="currency" value={currency} onChange={handleCurrencyChange}>
                           <option value="">Select currency</option>
-                          <option value="EURJPY-OTC">EURJPY-OTC</option>
-                          <option value="EURUSD-OTC">EURUSD-OTC</option>
-                          <option value="USDCHF-OTC">USDCHF-OTC</option>
-                          <option value="GBPUSD-OTC">GBPUSD-OTC</option>
-                          <option value="AUDCAD-OTC">AUDCAD-OTC</option>
-                          <option value="NZDUSD-OTC">NZDUSD-OTC</option>
-                          <option value="EURGBP-OTC">EURGBP-OTC</option>
+                          <option value="EURJPY">EURJPY-OTC</option>
+                          <option value="EURUSD">EURUSD-OTC</option>
+                          <option value="USDCHF">USDCHF-OTC</option>
+                          <option value="GBPUSD">GBPUSD-OTC</option>
+                          <option value="AUDCAD">AUDCAD-OTC</option>
+                          <option value="NZDUSD">NZDUSD-OTC</option>
+                          <option value="EURGBP">EURGBP-OTC</option>
                         </select>
                         </div>
                         <div className={`form-group ${broker ? 'active' : ''}`}>
